@@ -128,7 +128,7 @@ const logout = async (req, res) => {
       httpOnly: true,
       sameSite: "none",
       secure: true,
-      expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
+      maxAge: 0,
     });
     res.status(200).json({ msg: "success", data: "logged out" });
   } catch (error) {
