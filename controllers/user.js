@@ -80,7 +80,6 @@ const userLogin = async (req, res) => {
       // return response
       res.status(200).json({
         msg: "success",
-        token: token,
       });
     }
   } catch (error) {
@@ -92,11 +91,9 @@ const userLogin = async (req, res) => {
 // verify user
 const verifyLogged = async (req, res) => {
   try {
-    await connectDB();
-
     return res.status(200).json({ msg: true });
   } catch (error) {
-    return res.status(401).json({ msg: false });
+    return res.status(500).json({ msg: false });
   }
 };
 
