@@ -116,6 +116,13 @@ const logout = async (req, res) => {
     await connectDB();
 
     // remove cookie
+    res.setHeader(
+      "Cache-Control",
+      "no-store, no-cache, must-revalidate, proxy-revalidate"
+    );
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    res.setHeader("Surrogate-Control", "no-store");
     res.clearCookie("token");
     res.status(200).json({ msg: "success", data: "logged out" });
   } catch (error) {
