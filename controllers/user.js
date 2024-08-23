@@ -123,7 +123,13 @@ const logout = async (req, res) => {
     res.setHeader("Pragma", "no-cache");
     res.setHeader("Expires", "0");
     res.setHeader("Surrogate-Control", "no-store");
-    res.clearCookie("token");
+    res.clearCookie("token", {
+      path: "/",
+      httpOnly: true,
+      sameSite: "none",
+      secure: true,
+      expires: new Date(Date.now() + 1 * 60 * 60 * 1000),
+    });
     res.status(200).json({ msg: "success", data: "logged out" });
   } catch (error) {
     console.log(error);
